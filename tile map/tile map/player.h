@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tools.h"
+
+
 void initPlayer();
 
 typedef enum  Direction Direction;
@@ -19,5 +21,5 @@ Direction direction;
 void updatePlayer(sfRenderWindow* _window);
 
 void displayPlayer(sfRenderWindow* _window);
-void godlink2();
-void nogodlink2();
+void EditorMod_player();
+void GameMod_player();

@@ -1,60 +1,58 @@
 ﻿  cam.c
   main.c
   map.c
-G:\copi\tile map\tile map\map.c(84,61): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(85,58): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(86,62): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(87,75): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(99,78): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(100,58): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(101,79): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(102,75): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(114,57): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(115,78): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(116,75): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(117,79): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(130,74): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(131,62): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(132,58): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(133,63): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(183,38): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
-G:\copi\tile map\tile map\map.c(184,33): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(185,33): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-G:\copi\tile map\tile map\map.c(264,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(265,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(272,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(273,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(280,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(281,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(288,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(289,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(296,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(297,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(303,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(304,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(311,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(312,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(319,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(320,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(327,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(328,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(335,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(336,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(343,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(344,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(351,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(352,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(359,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(360,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(367,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(368,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(375,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(376,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(383,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-G:\copi\tile map\tile map\map.c(384,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(69,61): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(70,58): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(71,62): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(72,75): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(88,78): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(89,58): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(90,79): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(91,75): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(107,57): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(108,78): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(109,75): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(110,79): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(127,74): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(128,62): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(129,58): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(130,63): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(189,38): warning C4133: 'fonction' : types incompatibles - de 'sfRenderWindow *' à 'const sfWindow *'
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(190,33): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(191,33): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(266,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(267,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(274,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(275,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(282,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(283,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(290,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(291,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(298,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(299,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(305,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(306,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(313,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(314,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(321,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(322,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(329,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(330,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(337,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(338,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(345,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(346,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(353,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(354,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(361,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(362,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(369,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(370,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(377,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(378,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(385,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(386,20): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
   player.c
-  tools.c
-G:\copi\tile map\tile map\tools.c(11,8): warning C4244: 'fonction' : conversion de 'time_t' en 'unsigned int', perte possible de données
   Génération de code en cours...
-G:\copi\tile map\tile map\map.c(152): warning C4715: 'updateMap' : les chemins de contrôle ne retournent pas tous une valeur
-  tile map.vcxproj -> G:\copi\tile map\Debug\tile map.exe
+C:\Users\r.moreno\Documents\GitHub\RPG\tile map\tile map\map.c(152): warning C4715: 'collision' : les chemins de contrôle ne retournent pas tous une valeur
+  tile map.vcxproj -> C:\Users\r.moreno\Documents\GitHub\RPG\tile map\Debug\tile map.exe

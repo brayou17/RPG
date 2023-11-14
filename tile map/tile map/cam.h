@@ -5,6 +5,6 @@ void initCam();
 
 void updateCam(_playerpos);
 
-void displayCam(sfRenderWindow* _window, int _t);
-void godlink();
-void nogodlink();
+void displayCam(sfRenderWindow* _window, int _animCoffre);
+void EditorMod_cam();
+void GameMod_cam();

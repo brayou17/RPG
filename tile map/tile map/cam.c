@@ -4,11 +4,12 @@
 #include "map.h"
 
 sfView* cam;
-sfVector2f camrect = {640 ,360 };
+sfVector2f camrect = {800 ,600 };
 
 
 void initCam()
 {
+	// Initialisation de la view
 	cam = sfView_create();
 	sfView_setSize(cam ,camrect);
 }
@@ -16,26 +17,31 @@ void initCam()
 
 void updateCam(sfVector2f _playerpos)
 {
+
+	// Update de la view
 	sfView_setCenter(cam, _playerpos);
 	
 }
 
-void displayCam(sfRenderWindow* _window, int _t)
+void displayCam(sfRenderWindow* _window, int _animCoffre)
 { 
+	// Affichage de la view
 	sfRenderWindow_setView(_window, cam); 
-	displayMap(_window, _t, cam);
+	displayMap(_window, _animCoffre, cam);
 }
 
-void godlink()
+void EditorMod_cam()
 {
+	// Passage en mode édition de map
 	camrect.x = 3840;
 	camrect.y = 2160;
 	sfView_setSize(cam, camrect);
 }
 
-void nogodlink()
+void GameMod_cam()
 {
-	camrect.x = 640;
-	camrect.y = 360;
+	// Passage en mode jeu 
+	camrect.x = 800;
+	camrect.y = 600;
 	sfView_setSize(cam, camrect);
 }

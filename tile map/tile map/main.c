@@ -12,7 +12,7 @@
 int main()
 {
 	float animTime = 0.0f;
-	int test = 0;
+	int animCoffre = 0;
 
 	//init
 	initTools();
@@ -48,12 +48,12 @@ int main()
 		if (timer > 0.8f)
 		{
 			timer = 0.0f;
-			test = (test + 1) % 4;
+			animCoffre = (animCoffre + 1) % 4;
 		}
 	
 		sfRenderWindow_clear(window, sfBlack);
 		
-		displayCam(window, test);
+		displayCam(window, animCoffre);
 		displayPlayer(window);
 		
 		sfRenderWindow_display(window);

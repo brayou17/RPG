@@ -8,9 +8,7 @@ sfIntRect chestrect[4] = { {0, 0, 32 ,32},{32, 0, 32 ,32},{64, 0, 32 ,32},{96, 0
 sfVector2f chestpos = { 0.0f ,0.0f };
 
 sfSprite* tileSprite;
-
 sfTexture* tileTexture;
-
 sfIntRect tileRect;
 sfVector2f position = { 0.0f ,0.0f };
 sfVector2i Tposition = { 0 ,0 };
@@ -20,123 +18,125 @@ FILE* fichier;
 
 char map[60][200];
 
+int iModeDeJeu = 0;
+
+
 void initMap()
 {
-	/*for (int y = 0; y < 60; y++)
-	{
-		for (int x = 0; x < 200; x++)
-		{
-			 if (y == 0)
-			{
-	 			map[y][x] == 3;
-			}
- 			if (x == 0)
- 			 {
-	 			 map[y][x] == 3;
-	 		}
-			else if (x == 199)
-	 		{
-	 			map[y][x] == 3;
-			}
-	 		else if (y == 199)
-			{
-		 		map[y][x] == 3;
-			}
-			else 
-			 {
-				map[y][x] =  rand() % 11;
-			 }
-		}
-	}*/
-
+	// Initialisation de la map | ouverture du fichier MAP.bin et lecture du contenu dans le tableau map 
 	fichier = fopen("MAP.bin", "r");
 	fread(map, sizeof(char), 12000, fichier);
 	fclose(fichier);
 
 
- 	
+ 	// Initialisation des textures et des sprites
 	chesttexture = sfTexture_createFromFile(TEXTURE_PATH"coffre32.png", NULL);
 	chest = sfSprite_create();
 	sfSprite_setTexture(chest, chesttexture, sfTrue);
-	
 
 	tileTexture = sfTexture_createFromFile(TEXTURE_PATH"tileset.png", NULL);
 	tileSprite = sfSprite_create();
 	sfSprite_setTexture(tileSprite, tileTexture, sfTrue);
+
+	// 
 	tileRect.left = 32;
 	tileRect.top = 0;
 	tileRect.width = 32;
 	tileRect.height = 32;
 }
+
+
+// A revoir car pas clair
 float timer2 = 0;
-int i = 0;
-sfBool updateMap(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse)
+
+
+
+sfBool collision(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse)
 {
+	// Gestions des collisions avec les murs
+
 	
 	sfVector2i fpos;
 	sfVector2i fpos2;
-	if (i == 0)
-	{ 
+	if (iModeDeJeu == 0)
+	{ // Quand le mode de jeu est en gameplay | Gestions des collisions
 		switch (_direction)
 		{
+			// Gestions des déplacements du personnage en fonction de la direction
 
 		case HAUT:
+			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
 			fpos.y = (_sprite.top - 2 + _vitesse.y * GetDeltaTime()) / 32;
 			fpos.x = (_sprite.left + _vitesse.x * GetDeltaTime()) / 32;
 			fpos2.y = (_sprite.top - 2 + _vitesse.y * GetDeltaTime()) / 32;
 			fpos2.x = (_sprite.width + _sprite.left + _vitesse.x * GetDeltaTime()) / 32;
+			
+			// Si la case est 5 4 3 9 alors, on renvoie vrai || A REVOIR
 			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] == 9 || map[fpos.y][fpos.x] == 9))
 			{
 				return sfTrue;
 			}
 			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
 			{
+				// Renvoie 2 pour stipuler que la case est de l'eau
 				return sfTrue + 1;
 			}
 			else return sfFalse;
 			break;
 		case BAS:
+			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
 			fpos.y = (_sprite.top + _sprite.height + 2 + _vitesse.y * GetDeltaTime()) / 32;
 			fpos.x = (_sprite.left + _vitesse.x * GetDeltaTime()) / 32;
 			fpos2.y = (_sprite.top + _sprite.height + 2 + _vitesse.y * GetDeltaTime()) / 32;
 			fpos2.x = (_sprite.left + _sprite.width + _vitesse.x * GetDeltaTime()) / 32;
+
+			// Si la case est 5 4 3 7 alors, on renvoie vrai
 			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] > 2) || (map[fpos2.y][fpos2.x] == 7 || map[fpos.y][fpos.x] == 7))
 			{
 				return sfTrue;
 			}
 			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
 			{
+				// Renvoie 2 pour stipuler que la case est de l'eau
 				return sfTrue + 1;
 			}
 			else return sfFalse;
 			break;
 		case DROITE:
+			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
 			fpos.y = (_sprite.top + _vitesse.y * GetDeltaTime()) / 32;
 			fpos.x = (_sprite.left + _sprite.width + 2 + _vitesse.x * GetDeltaTime()) / 32;
 			fpos2.y = (_sprite.top + _sprite.height + _vitesse.y * GetDeltaTime()) / 32;
 			fpos2.x = (_sprite.left + _sprite.width + 2 + _vitesse.x * GetDeltaTime()) / 32;
+
+			// Si la case est 5 4 3 10 alors, on renvoie vrai
 			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] > 2) || (map[fpos2.y][fpos2.x] == 10 || map[fpos.y][fpos.x] == 10))
 			{
 				return sfTrue;
 			}
 			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
 			{
+				// Renvoie 2 pour stipuler que la case est de l'eau
 				return sfTrue + 1;
 			}
 			else return sfFalse;
 
 			break;
 		case GAUCHE:
+			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
 			fpos.y = (_sprite.top + _sprite.height + _vitesse.y * GetDeltaTime()) / 32;
 			fpos.x = (_sprite.left - 2 + _vitesse.x * GetDeltaTime()) / 32;
 			fpos2.y = (_sprite.top + _vitesse.y * GetDeltaTime()) / 32;
 			fpos2.x = (_sprite.left - 2 + _vitesse.x * GetDeltaTime()) / 32;
+
+			// Si la case est 5 4 3 8 alors, on renvoie vrai
 			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] > 2) || (map[fpos2.y][fpos2.x] == 8 || map[fpos.y][fpos.x] == 8))
 			{
 				return sfTrue;
 			}
 			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
 			{
+				// Renvoie 2 pour stipuler que la case est de l'eau
 				return sfTrue + 1;
 			}
 			else return sfFalse;
@@ -144,8 +144,8 @@ sfBool updateMap(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse)
 		}
 	
 	}
-	if (i == 1)
-	{
+	if (iModeDeJeu == 1)
+	{ // Quand le mode de jeu est en mode édition de map | pas de collisions
 		return sfFalse;
 	}
 
@@ -153,30 +153,36 @@ sfBool updateMap(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse)
 
 
 float timer = 0.0f;
-int up = 0;
+
 
 void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
 {
+	// Initatisation des variables
+	int TailleBrush = 0;
 	timer2 += GetDeltaTime();
+
+	// A REVOIR | Gestion du changement de mode de jeu
 	if (sfKeyboard_isKeyPressed(sfKeySpace) && timer2 > 0.3f)
 	{
 		timer2 = 0;
-		i++;
-		if (i > 1)
-			i = 0;
-		if (i == 1)
+		iModeDeJeu++;
+		if (iModeDeJeu > 1)
+			iModeDeJeu = 0;
+		if (iModeDeJeu == 1)
 		{
 
-			godlink2();
-			godlink();
+			EditorMod_player();
+			EditorMod_cam();
 		}
-		if (i == 0)
+		if (iModeDeJeu == 0)
 		{
-			nogodlink2();
-			nogodlink();
+			GameMod_player();
+			GameMod_cam();
 		}
 
 	}
+
+
  	sfVector2i mousePosition;
 	sfVector2i pixelPos = sfMouse_getPositionRenderWindow(_window);
 	sfVector2f worldPos = sfRenderWindow_mapPixelToCoords(_window, pixelPos, _cam);
@@ -184,19 +190,24 @@ void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
 	Tposition.x = (float)worldPos.x/32 ;
 	Tposition.y = (float)worldPos.y/32 ;
 	timer += GetDeltaTime();
-	if (i == 1)
+
+	// Gestion de l'édition de la map
+	if (iModeDeJeu == 1)
 	{
-		sfRenderWindow_setMouseCursorVisible(_window, sfTrue);
-	 	if (mousePosition.x < 1920 && mousePosition.y < 1080 && mousePosition.x>0 && mousePosition.y>0)
+		
+		// Affichage du mode édition pour la map 
+	 	if (mousePosition.x < 800 && mousePosition.y < 600 && mousePosition.x>0 && mousePosition.y>0)
 		{
+			// Si le bouton gauche de la souris est presser alors on change la case de la map
 			if (sfMouse_isButtonPressed(sfMouseLeft))
 			{
-				if (up == 0)
+				if (TailleBrush == 0)
 				{
+					// Gestion de la taille du pinceau 1x1
 					map[Tposition.y][Tposition.x] = ntile;
 				}
-				if (up == 1)
-				{
+				if (TailleBrush == 1)
+				{	// Gestion de la taille du pinceau 3x3
 					map[Tposition.y+1][Tposition.x] = ntile;
 				 	map[Tposition.y-1][Tposition.x] = ntile;
 		 			map[Tposition.y][Tposition.x+1] = ntile;
@@ -209,6 +220,8 @@ void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
 				}
 			}
 		}
+
+		// Si le bouton droit de la souris est pressée alors on change ntile 
 		if (sfMouse_isButtonPressed(sfMouseRight) && timer > 0.3f)
 		{
 			timer = 0.0f;
@@ -216,47 +229,36 @@ void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
 			if (ntile > 15)
 				ntile = 0;
 		}
+
+		// Si la touche I est pressée alors on change la taille du pinceau
 		if (sfKeyboard_isKeyPressed(sfKeyI) && timer > 1)
 		{
 			timer = 0.0f;
-			up = (1 + up) % 2;
+			TailleBrush = (1 + TailleBrush) % 2;
 		}
+
+		// Si la touche M est pressée alors on sauvegarde la map
  	  	if (sfKeyboard_isKeyPressed(sfKeyM) && timer > 1)
 		{
 
 	 		fichier = fopen("MAP.bin", "w");
  			fwrite(map, sizeof(char), 12000, fichier);
  			fclose(fichier);
-
-			/*timer = 0.0f;
-			for (int y = 0; y < 60; y++)
-			{
-				for (int x = 0; x < 200; x++)
-				{
-					if (x == 0)
-					{
-						printf("{%d,", map[y][x]);
-					}
-					else if (x == 199)
-					{
-						printf("%d},\n", map[y][x]);
-					}
-					else {
-						printf("%d,", map[y][x]);
-					}
-				}
-
-			}*/
 		}
 	}
-	if (i == 0)
+
+	
+	/*if (iModeDeJeu == 0)
 	{
 		sfRenderWindow_setMouseCursorVisible(_window, sfFalse);
-	}
+	}*/
+
+	// Affichage de la map
 	for (int y = 0; y < 60; y++)
 	{
 		for (int x = 0; x < 200; x++)
 		{
+			// Affichage des cases de la map en fonction de leur type
 			switch (map[y][x])
 			{
 			case 0:
@@ -389,8 +391,11 @@ void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
 			}
 		}
 	}
-	if (i == 1)
-	{
+
+	// Affichage de la selection du pinceau
+
+	if (iModeDeJeu == 1)
+	{	// Si le mode de jeu est en mode édition alors on affiche la selection du pinceau
 		switch (ntile)
 		{
 		case 0:

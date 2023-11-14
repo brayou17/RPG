@@ -16,6 +16,8 @@ sfVector2f vitesse = { 200.0f, 200.0f };
 
 void initPlayer()
 {
+	// Initialisation du joueur
+
 	playertexture = sfTexture_createFromFile(TEXTURE_PATH"player.png", NULL);
 	player = sfSprite_create();
 	sfSprite_setTexture(player, playertexture, sfTrue);
@@ -25,18 +27,18 @@ void initPlayer()
 
 void updatePlayer(sfRenderWindow* _window)
 {
-
+	// Update du joueur
 	sfFloatRect playerfrect = sfSprite_getGlobalBounds(player);
 
 	isMoving = sfFalse;
 	if (sfKeyboard_isKeyPressed(sfKeyZ) && Pposition.y >0 && Pposition.y >32)
-	{
+	{	// Mouvement vers le haut
 		frameY = HAUT;
-		if(!updateMap(playerfrect, HAUT , vitesse ))
+		if(!collision(playerfrect, HAUT , vitesse ))
 		{
 			Pposition.y -= vitesse.y * GetDeltaTime();
 		}
-		else if (updateMap(playerfrect, HAUT, vitesse) == 2)
+		else if (collision(playerfrect, HAUT, vitesse) == 2)
 		{
 			Pposition.y -= (vitesse.y - 100) * GetDeltaTime();
 		}
@@ -44,14 +46,14 @@ void updatePlayer(sfRenderWindow* _window)
 		isMoving = sfTrue;
 	}
 	else if (sfKeyboard_isKeyPressed(sfKeyS) && Pposition.y > 0)
-	{
+	{	// Mouvement vers le bas
 
 		frameY = BAS;
-		if (!updateMap(playerfrect, BAS, vitesse))
+		if (!collision(playerfrect, BAS, vitesse))
 		{
 			Pposition.y += vitesse.y * GetDeltaTime();
 		}
-		else if (updateMap(playerfrect, BAS, vitesse) == 2)
+		else if (collision(playerfrect, BAS, vitesse) == 2)
 		{
 			Pposition.y += (vitesse.y-100) * GetDeltaTime();
 		}
@@ -60,14 +62,14 @@ void updatePlayer(sfRenderWindow* _window)
 		isMoving = sfTrue;
 	}
 	else if (sfKeyboard_isKeyPressed(sfKeyQ) && Pposition.y > 0)
-	{
+	{	// Mouvement vers la gauche
 
 		frameY = GAUCHE;
-		if (!updateMap(playerfrect, GAUCHE, vitesse))
+		if (!collision(playerfrect, GAUCHE, vitesse))
 		{
 			Pposition.x -= vitesse.x * GetDeltaTime();
 		}
-		else if (updateMap(playerfrect, GAUCHE, vitesse) == 2)
+		else if (collision(playerfrect, GAUCHE, vitesse) == 2)
 		{
 			Pposition.x -= (vitesse.y - 100) * GetDeltaTime();
 		}
@@ -75,14 +77,14 @@ void updatePlayer(sfRenderWindow* _window)
 		isMoving = sfTrue;
 	}
 	else if (sfKeyboard_isKeyPressed(sfKeyD) && Pposition.y > 0)
-	{
+	{	// Mouvement vers la droite
 
 		frameY = DROITE;
-		if (!updateMap(playerfrect, DROITE, vitesse))
+		if (!collision(playerfrect, DROITE, vitesse))
 		{
 			Pposition.x += vitesse.x * GetDeltaTime();
 		}
-		else if (updateMap(playerfrect, DROITE, vitesse) == 2)
+		else if (collision(playerfrect, DROITE, vitesse) == 2)
 		{
 			Pposition.x += (vitesse.y - 100) * GetDeltaTime();
 		}
@@ -118,13 +120,14 @@ void updatePlayer(sfRenderWindow* _window)
 
 void displayPlayer(sfRenderWindow* _window)
 {
+	// Affichage du joueur
 	sfSprite_setPosition(player, Pposition);
 	sfRenderWindow_drawSprite(_window, player, NULL);
 
 }
 
-void godlink2()
-{
+void EditorMod_player()
+{	// Editeur | Fonction qui permet de changer la taille et la vitesse du joueur en fonction du mode 
 	scale.x = 0.0f;
 	scale.y = 0.0f;
 	vitesse.x = 2000;
@@ -132,8 +135,8 @@ void godlink2()
 	sfSprite_setScale(player, scale);
 }
 
-void nogodlink2()
-{
+void GameMod_player()
+{	// Joueur | Fonction qui permet de changer la taille et la vitesse du joueur en fonction du mode
 	scale.x = 0.8f;
 	scale.y = 0.8f;
 	vitesse.x = 200;
