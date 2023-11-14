@@ -44,6 +44,7 @@ int main()
 			}
 		}
 		updatePlayer(window);
+		updateMap(window, animCoffre, cam);
 		//affichage
 		if (timer > 0.8f)
 		{
@@ -53,6 +54,7 @@ int main()
 	
 		sfRenderWindow_clear(window, sfBlack);
 		
+		displayMap(window, animCoffre, cam);
 		displayCam(window, animCoffre);
 		displayPlayer(window);
 		

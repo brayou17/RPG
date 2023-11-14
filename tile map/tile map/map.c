@@ -21,6 +21,8 @@ char map[60][200];
 int iModeDeJeu = 0;
 
 
+
+
 void initMap()
 {
 	// Initialisation de la map | ouverture du fichier MAP.bin et lecture du contenu dans le tableau map 
@@ -38,7 +40,7 @@ void initMap()
 	tileSprite = sfSprite_create();
 	sfSprite_setTexture(tileSprite, tileTexture, sfTrue);
 
-	// 
+	
 	tileRect.left = 32;
 	tileRect.top = 0;
 	tileRect.width = 32;
@@ -46,120 +48,23 @@ void initMap()
 }
 
 
+
 // A revoir car pas clair
-float timer2 = 0;
-
-
-
-sfBool collision(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse)
-{
-	// Gestions des collisions avec les murs
-
-	
-	sfVector2i fpos;
-	sfVector2i fpos2;
-	if (iModeDeJeu == 0)
-	{ // Quand le mode de jeu est en gameplay | Gestions des collisions
-		switch (_direction)
-		{
-			// Gestions des déplacements du personnage en fonction de la direction
-
-		case HAUT:
-			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
-			fpos.y = (_sprite.top - 2 + _vitesse.y * GetDeltaTime()) / 32;
-			fpos.x = (_sprite.left + _vitesse.x * GetDeltaTime()) / 32;
-			fpos2.y = (_sprite.top - 2 + _vitesse.y * GetDeltaTime()) / 32;
-			fpos2.x = (_sprite.width + _sprite.left + _vitesse.x * GetDeltaTime()) / 32;
-			
-			// Si la case est 5 4 3 9 alors, on renvoie vrai || A REVOIR
-			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] == 9 || map[fpos.y][fpos.x] == 9))
-			{
-				return sfTrue;
-			}
-			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
-			{
-				// Renvoie 2 pour stipuler que la case est de l'eau
-				return sfTrue + 1;
-			}
-			else return sfFalse;
-			break;
-		case BAS:
-			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
-			fpos.y = (_sprite.top + _sprite.height + 2 + _vitesse.y * GetDeltaTime()) / 32;
-			fpos.x = (_sprite.left + _vitesse.x * GetDeltaTime()) / 32;
-			fpos2.y = (_sprite.top + _sprite.height + 2 + _vitesse.y * GetDeltaTime()) / 32;
-			fpos2.x = (_sprite.left + _sprite.width + _vitesse.x * GetDeltaTime()) / 32;
-
-			// Si la case est 5 4 3 7 alors, on renvoie vrai
-			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] > 2) || (map[fpos2.y][fpos2.x] == 7 || map[fpos.y][fpos.x] == 7))
-			{
-				return sfTrue;
-			}
-			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
-			{
-				// Renvoie 2 pour stipuler que la case est de l'eau
-				return sfTrue + 1;
-			}
-			else return sfFalse;
-			break;
-		case DROITE:
-			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
-			fpos.y = (_sprite.top + _vitesse.y * GetDeltaTime()) / 32;
-			fpos.x = (_sprite.left + _sprite.width + 2 + _vitesse.x * GetDeltaTime()) / 32;
-			fpos2.y = (_sprite.top + _sprite.height + _vitesse.y * GetDeltaTime()) / 32;
-			fpos2.x = (_sprite.left + _sprite.width + 2 + _vitesse.x * GetDeltaTime()) / 32;
-
-			// Si la case est 5 4 3 10 alors, on renvoie vrai
-			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] > 2) || (map[fpos2.y][fpos2.x] == 10 || map[fpos.y][fpos.x] == 10))
-			{
-				return sfTrue;
-			}
-			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
-			{
-				// Renvoie 2 pour stipuler que la case est de l'eau
-				return sfTrue + 1;
-			}
-			else return sfFalse;
-
-			break;
-		case GAUCHE:
-			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
-			fpos.y = (_sprite.top + _sprite.height + _vitesse.y * GetDeltaTime()) / 32;
-			fpos.x = (_sprite.left - 2 + _vitesse.x * GetDeltaTime()) / 32;
-			fpos2.y = (_sprite.top + _vitesse.y * GetDeltaTime()) / 32;
-			fpos2.x = (_sprite.left - 2 + _vitesse.x * GetDeltaTime()) / 32;
-
-			// Si la case est 5 4 3 8 alors, on renvoie vrai
-			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] > 2) || (map[fpos2.y][fpos2.x] == 8 || map[fpos.y][fpos.x] == 8))
-			{
-				return sfTrue;
-			}
-			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
-			{
-				// Renvoie 2 pour stipuler que la case est de l'eau
-				return sfTrue + 1;
-			}
-			else return sfFalse;
-			break;
-		}
-	
-	}
-	if (iModeDeJeu == 1)
-	{ // Quand le mode de jeu est en mode édition de map | pas de collisions
-		return sfFalse;
-	}
-
-}
-
-
+float timer2 = 0.0f;
 float timer = 0.0f;
+int TailleBrush = 0;
 
 
-void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
+void updateMap(sfRenderWindow* _window, int _t, sfView* _cam)
 {
 	// Initatisation des variables
-	int TailleBrush = 0;
+	
 	timer2 += GetDeltaTime();
+
+	sfVector2i mousePosition;
+	sfVector2i pixelPos = sfMouse_getPositionRenderWindow(_window);
+	sfVector2f worldPos = sfRenderWindow_mapPixelToCoords(_window, pixelPos, cam);
+	mousePosition = sfMouse_getPosition(_window);
 
 	// A REVOIR | Gestion du changement de mode de jeu
 	if (sfKeyboard_isKeyPressed(sfKeySpace) && timer2 > 0.3f)
@@ -183,20 +88,16 @@ void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
 	}
 
 
- 	sfVector2i mousePosition;
-	sfVector2i pixelPos = sfMouse_getPositionRenderWindow(_window);
-	sfVector2f worldPos = sfRenderWindow_mapPixelToCoords(_window, pixelPos, _cam);
-	mousePosition = sfMouse_getPosition(_window);
-	Tposition.x = (float)worldPos.x/32 ;
-	Tposition.y = (float)worldPos.y/32 ;
+	Tposition.x = (float)worldPos.x / 32;
+	Tposition.y = (float)worldPos.y / 32;
 	timer += GetDeltaTime();
 
 	// Gestion de l'édition de la map
 	if (iModeDeJeu == 1)
 	{
-		
+
 		// Affichage du mode édition pour la map 
-	 	if (mousePosition.x < 800 && mousePosition.y < 600 && mousePosition.x>0 && mousePosition.y>0)
+		if (mousePosition.x < 800 && mousePosition.y < 600 && mousePosition.x>0 && mousePosition.y>0)
 		{
 			// Si le bouton gauche de la souris est presser alors on change la case de la map
 			if (sfMouse_isButtonPressed(sfMouseLeft))
@@ -208,15 +109,15 @@ void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
 				}
 				if (TailleBrush == 1)
 				{	// Gestion de la taille du pinceau 3x3
-					map[Tposition.y+1][Tposition.x] = ntile;
-				 	map[Tposition.y-1][Tposition.x] = ntile;
-		 			map[Tposition.y][Tposition.x+1] = ntile;
-	 				map[Tposition.y][Tposition.x-1] = ntile;
-		 			map[Tposition.y+1][Tposition.x+1] = ntile;
-		 			map[Tposition.y+1][Tposition.x-1] = ntile;
-		 			map[Tposition.y-1][Tposition.x+1] = ntile;
-					map[Tposition.y-1][Tposition.x-1] = ntile;
-		 			map[Tposition.y][Tposition.x] = ntile;
+					map[Tposition.y + 1][Tposition.x] = ntile;
+					map[Tposition.y - 1][Tposition.x] = ntile;
+					map[Tposition.y][Tposition.x + 1] = ntile;
+					map[Tposition.y][Tposition.x - 1] = ntile;
+					map[Tposition.y + 1][Tposition.x + 1] = ntile;
+					map[Tposition.y + 1][Tposition.x - 1] = ntile;
+					map[Tposition.y - 1][Tposition.x + 1] = ntile;
+					map[Tposition.y - 1][Tposition.x - 1] = ntile;
+					map[Tposition.y][Tposition.x] = ntile;
 				}
 			}
 		}
@@ -231,22 +132,40 @@ void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
 		}
 
 		// Si la touche I est pressée alors on change la taille du pinceau
-		if (sfKeyboard_isKeyPressed(sfKeyI) && timer > 1)
+		if (sfKeyboard_isKeyPressed(sfKeyI) && timer > 0.3f)
 		{
 			timer = 0.0f;
 			TailleBrush = (1 + TailleBrush) % 2;
+			printf("%d", TailleBrush);
 		}
 
 		// Si la touche M est pressée alors on sauvegarde la map
- 	  	if (sfKeyboard_isKeyPressed(sfKeyM) && timer > 1)
+		if (sfKeyboard_isKeyPressed(sfKeyM) && timer > 0.3f)
 		{
 
-	 		fichier = fopen("MAP.bin", "w");
- 			fwrite(map, sizeof(char), 12000, fichier);
- 			fclose(fichier);
+			fichier = fopen("MAP.bin", "w");
+			fwrite(map, sizeof(char), 12000, fichier);
+			fclose(fichier);
 		}
 	}
 
+
+
+}
+
+
+
+
+
+
+void displayMap(sfRenderWindow* _window, int _t, sfView* _cam)
+{
+	
+
+	sfVector2i mousePosition;
+	sfVector2i pixelPos = sfMouse_getPositionRenderWindow(_window);
+	sfVector2f worldPos = sfRenderWindow_mapPixelToCoords(_window, pixelPos, cam);
+	mousePosition = sfMouse_getPosition(_window);
 	
 	/*if (iModeDeJeu == 0)
 	{
@@ -309,7 +228,7 @@ void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
 				sfRenderWindow_drawSprite(_window, chest, NULL);
 				break;
 			case 6:
-				tileRect.left = 32*7;
+				tileRect.left = 32 * 7;
 				position.x = x * 32;
 				position.y = y * 32;
 				sfSprite_setPosition(tileSprite, position);
@@ -534,4 +453,116 @@ void displayMap(sfRenderWindow * _window, int _t, sfView * _cam)
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+sfBool collision(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse)
+{
+	// Gestions des collisions avec les murs
+
+	
+	sfVector2i fpos;
+	sfVector2i fpos2;
+	if (iModeDeJeu == 0)
+	{ // Quand le mode de jeu est en gameplay | Gestions des collisions
+		switch (_direction)
+		{
+			// Gestions des déplacements du personnage en fonction de la direction
+
+		case HAUT:
+			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
+			fpos.y = (_sprite.top - 2 + _vitesse.y * GetDeltaTime()) / 32;
+			fpos.x = (_sprite.left + _vitesse.x * GetDeltaTime()) / 32;
+			fpos2.y = (_sprite.top - 2 + _vitesse.y * GetDeltaTime()) / 32;
+			fpos2.x = (_sprite.width + _sprite.left + _vitesse.x * GetDeltaTime()) / 32;
+			
+			// Si la case est 5 4 3 9 alors, on renvoie vrai || A REVOIR
+			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] == 9 || map[fpos.y][fpos.x] == 9))
+			{
+				return sfTrue;
+			}
+			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
+			{
+				// Renvoie 2 pour stipuler que la case est de l'eau
+				return sfTrue + 1;
+			}
+			else return sfFalse;
+			break;
+		case BAS:
+			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
+			fpos.y = (_sprite.top + _sprite.height + 2 + _vitesse.y * GetDeltaTime()) / 32;
+			fpos.x = (_sprite.left + _vitesse.x * GetDeltaTime()) / 32;
+			fpos2.y = (_sprite.top + _sprite.height + 2 + _vitesse.y * GetDeltaTime()) / 32;
+			fpos2.x = (_sprite.left + _sprite.width + _vitesse.x * GetDeltaTime()) / 32;
+
+			// Si la case est 5 4 3 7 alors, on renvoie vrai
+			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] > 2) || (map[fpos2.y][fpos2.x] == 7 || map[fpos.y][fpos.x] == 7))
+			{
+				return sfTrue;
+			}
+			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
+			{
+				// Renvoie 2 pour stipuler que la case est de l'eau
+				return sfTrue + 1;
+			}
+			else return sfFalse;
+			break;
+		case DROITE:
+			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
+			fpos.y = (_sprite.top + _vitesse.y * GetDeltaTime()) / 32;
+			fpos.x = (_sprite.left + _sprite.width + 2 + _vitesse.x * GetDeltaTime()) / 32;
+			fpos2.y = (_sprite.top + _sprite.height + _vitesse.y * GetDeltaTime()) / 32;
+			fpos2.x = (_sprite.left + _sprite.width + 2 + _vitesse.x * GetDeltaTime()) / 32;
+
+			// Si la case est 5 4 3 10 alors, on renvoie vrai
+			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] > 2) || (map[fpos2.y][fpos2.x] == 10 || map[fpos.y][fpos.x] == 10))
+			{
+				return sfTrue;
+			}
+			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
+			{
+				// Renvoie 2 pour stipuler que la case est de l'eau
+				return sfTrue + 1;
+			}
+			else return sfFalse;
+
+			break;
+		case GAUCHE:
+			// Calcul des coordonnées de la case dans laquelle le personnage va se déplacer
+			fpos.y = (_sprite.top + _sprite.height + _vitesse.y * GetDeltaTime()) / 32;
+			fpos.x = (_sprite.left - 2 + _vitesse.x * GetDeltaTime()) / 32;
+			fpos2.y = (_sprite.top + _vitesse.y * GetDeltaTime()) / 32;
+			fpos2.x = (_sprite.left - 2 + _vitesse.x * GetDeltaTime()) / 32;
+
+			// Si la case est 5 4 3 8 alors, on renvoie vrai
+			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] > 2) || (map[fpos2.y][fpos2.x] == 8 || map[fpos.y][fpos.x] == 8))
+			{
+				return sfTrue;
+			}
+			else if (map[fpos.y][fpos.x] == 2 || map[fpos2.y][fpos2.x] == 2)
+			{
+				// Renvoie 2 pour stipuler que la case est de l'eau
+				return sfTrue + 1;
+			}
+			else return sfFalse;
+			break;
+		}
+	
+	}
+	if (iModeDeJeu == 1)
+	{ // Quand le mode de jeu est en mode édition de map | pas de collisions
+		return sfFalse;
+	}
+
+}
+
 
