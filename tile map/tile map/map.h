@@ -10,7 +10,7 @@ sfVector2f chestpos;
 
 
 void initMap();
-void updateMap(sfRenderWindow* _window, int _t, sfView* _cam);
+void updateMap(sfRenderWindow* _window, sfView* _cam);
 
 sfBool collision(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse);
 

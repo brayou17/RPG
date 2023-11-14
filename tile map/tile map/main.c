@@ -11,8 +11,7 @@
 
 int main()
 {
-	float animTime = 0.0f;
-	int animCoffre = 0;
+	
 
 	//init
 	initTools();
@@ -20,20 +19,19 @@ int main()
 	sfRenderWindow* window;
 	window = sfRenderWindow_create(mode, "Window", sfDefaultStyle, NULL);
 
-	
+	int animCoffre = 0;
+
 
 	sfEvent event;
 	initMap();
 	initPlayer();
 	initCam();
-	float timer = 0.0f;
+	
 
 	//boucle de jeu
 	while (sfRenderWindow_isOpen(window))
 	{
-		//timer
-		restartClock();
-		timer += GetDeltaTime();
+		
 		
 		//update
 		while (sfRenderWindow_pollEvent(window, &event))
@@ -44,13 +42,9 @@ int main()
 			}
 		}
 		updatePlayer(window);
-		updateMap(window, animCoffre, cam);
+		updateMap(window, cam);
 		//affichage
-		if (timer > 0.8f)
-		{
-			timer = 0.0f;
-			animCoffre = (animCoffre + 1) % 4;
-		}
+		
 	
 		sfRenderWindow_clear(window, sfBlack);
 		

@@ -55,10 +55,11 @@ float timer = 0.0f;
 int TailleBrush = 0;
 
 
-void updateMap(sfRenderWindow* _window, int _t, sfView* _cam)
+void updateMap(sfRenderWindow* _window, sfView* _cam)
 {
 	// Initatisation des variables
-	
+	int animCoffre = 0;
+	float timer_c = 0.0f;
 	timer2 += GetDeltaTime();
 
 	sfVector2i mousePosition;
@@ -149,7 +150,18 @@ void updateMap(sfRenderWindow* _window, int _t, sfView* _cam)
 	}
 
 
+	// Animation du coffre 
 
+	//timer
+	restartClock();
+	timer_c += GetDeltaTime();
+
+
+	if (timer_c > 0.8f)
+	{
+		timer_c = 0.0f;
+		animCoffre = (animCoffre + 1) % 4;
+	}
 }
 
 
