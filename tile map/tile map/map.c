@@ -136,7 +136,6 @@ void updateMap(sfRenderWindow* _window, int _t, sfView* _cam)
 		{
 			timer = 0.0f;
 			TailleBrush = (1 + TailleBrush) % 2;
-			printf("%d", TailleBrush);
 		}
 
 		// Si la touche M est pressée alors on sauvegarde la map
@@ -486,7 +485,7 @@ sfBool collision(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse)
 			fpos2.x = (_sprite.width + _sprite.left + _vitesse.x * GetDeltaTime()) / 32;
 			
 			// Si la case est 5 4 3 9 alors, on renvoie vrai || A REVOIR
-			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] == 9 || map[fpos.y][fpos.x] == 9))
+			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] >2) || (map[fpos2.y][fpos2.x] == 9 || map[fpos.y][fpos.x] == 9))
 			{
 				return sfTrue;
 			}
