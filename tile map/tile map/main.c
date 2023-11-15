@@ -1,13 +1,28 @@
 #include "SFML/graphics.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include"map.h"
-#include"tools.h"
-#include<math.h>
-#include<time.h>
-#include"player.h"
+#include "map.h"
+#include "tools.h"
+#include <math.h>
+#include <time.h>
+#include "player.h"
+#include "menu.h"
 
 #define TEXTURE_PATH "../Ressources/Textures/"
+
+
+// Enum pour les statues du jeu
+enum statue
+{
+	MENU = 0,
+	JOUER = 1,
+	EDITEUR = 2,
+	QUITTER = 3
+};
+
+typedef statue statue;
+
+statue statueActuelle = MENU;
 
 int main()
 {
@@ -26,6 +41,8 @@ int main()
 	initMap();
 	initPlayer();
 	initCam();
+	initMenu();
+	
 	float timer = 0.0f;
 
 	//boucle de jeu
@@ -34,7 +51,7 @@ int main()
 		//timer
 		restartClock();
 		timer += GetDeltaTime();
-		
+
 		//update
 		while (sfRenderWindow_pollEvent(window, &event))
 		{
@@ -43,6 +60,17 @@ int main()
 				sfRenderWindow_close(window);
 			}
 		}
+		if (statueActuelle == MENU)
+			updateMenu();
+		else if (statueActuelle == JOUER)
+		{	updatePlayer(window);
+		updateMap(window, animCoffre, cam);
+		}
+		else if (statueActuelle == EDITEUR)
+			updateMap(window, animCoffre, cam);
+		else if (statueActuelle == QUITTER)
+			sfRenderWindow_close(window);
+
 		updatePlayer(window);
 		updateMap(window, animCoffre, cam);
 		//affichage
@@ -50,6 +78,20 @@ int main()
 		{
 			timer = 0.0f;
 			animCoffre = (animCoffre + 1) % 4;
+		}
+		
+		if (statueActuelle == MENU)
+			DisplayMenu(window);
+		else if (statueActuelle == JOUER)
+		{
+			displayMap(window, animCoffre, cam);
+			displayCam(window, animCoffre);
+			displayPlayer(window);
+		}
+		else if (statueActuelle == EDITEUR)
+		{
+			displayMap(window, animCoffre, cam);
+			displayCam(window, animCoffre);
 		}
 	
 		sfRenderWindow_clear(window, sfBlack);
