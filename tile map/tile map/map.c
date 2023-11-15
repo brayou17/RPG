@@ -62,7 +62,7 @@ int TailleBrush = 0;
 void updateMap(sfRenderWindow* _window, sfView* _cam)
 {
 	// Initatisation des variables
-	int animCoffre = 0;
+	
 	
 	timer2 += GetDeltaTime();
 
@@ -484,16 +484,6 @@ void displayMap(sfRenderWindow* _window, sfView* _cam)
 
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 sfBool collision(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse)

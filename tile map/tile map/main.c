@@ -11,23 +11,12 @@
 #define TEXTURE_PATH "../Ressources/Textures/"
 
 
-// Enum pour les statues du jeu
-enum statue
-{
-	MENU = 0,
-	JOUER = 1,
-	EDITEUR = 2,
-	QUITTER = 3
-};
-
-typedef statue statue;
-
-statue statueActuelle = MENU;
 
 int main()
 {
+	
 	float animTime = 0.0f;
-	int animCoffre = 0;
+
 
 	//init
 	initTools();
@@ -35,14 +24,14 @@ int main()
 	sfRenderWindow* window;
 	window = sfRenderWindow_create(mode, "Window", sfDefaultStyle, NULL);
 
-	
+	actualState = MENU;
 
 	sfEvent event;
 	initMap();
 	initPlayer();
 	initCam();
 	initMenu();
-	
+
 	float timer = 0.0f;
 
 	//boucle de jeu
@@ -60,53 +49,48 @@ int main()
 				sfRenderWindow_close(window);
 			}
 		}
-		if (statueActuelle == MENU)
-			updateMenu();
-		else if (statueActuelle == JOUER)
-		{	updatePlayer(window);
-		updateMap(window, animCoffre, cam);
+		if (actualState == MENU)
+		{
+			updateMenu(window);
+			updateMenu(window);
 		}
-		else if (statueActuelle == EDITEUR)
-			updateMap(window, animCoffre, cam);
-		else if (statueActuelle == QUITTER)
+		else if (actualState == JOUER)
+		{
+			updatePlayer(window);
+			updateMap(window, cam);
+		}
+		else if (actualState == EDITEUR)
+			updateMap(window, cam);
+
+		else if (actualState == QUITTER)
 			sfRenderWindow_close(window);
 
-		updatePlayer(window);
-		updateMap(window, animCoffre, cam);
+
+
 		//affichage
-		if (timer > 0.8f)
+		sfRenderWindow_clear(window, sfBlack);
+
+		if (actualState == MENU)
 		{
-			timer = 0.0f;
-			animCoffre = (animCoffre + 1) % 4;
-		}
-		
-		if (statueActuelle == MENU)
 			DisplayMenu(window);
-		else if (statueActuelle == JOUER)
+		}
+		else if (actualState == JOUER)
 		{
-			displayMap(window, animCoffre, cam);
-			displayCam(window, animCoffre);
+			displayMap(window, cam);
+			displayCam(window);
 			displayPlayer(window);
 		}
-		else if (statueActuelle == EDITEUR)
+		else if (actualState == EDITEUR)
 		{
-			displayMap(window, animCoffre, cam);
-			displayCam(window, animCoffre);
+			displayMap(window, cam);
+			displayCam(window);
 		}
-	
-		sfRenderWindow_clear(window, sfBlack);
-		
-		displayMap(window, animCoffre, cam);
-		displayCam(window, animCoffre);
-		displayPlayer(window);
+
 		
 		sfRenderWindow_display(window);
-		if (sfKeyboard_isKeyPressed(sfKeyL))
-		{
-	 		sfRenderWindow_close(window);
-		}
+
 	}
 	return 0;
 }
 
- 
+
