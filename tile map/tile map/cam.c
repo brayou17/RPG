@@ -23,7 +23,7 @@ void updateCam(sfVector2f _playerpos)
 	
 }
 
-void displayCam(sfRenderWindow* _window, int _animCoffre)
+void displayCam(sfRenderWindow* _window)
 { 
 	// Affichage de la view
 	sfRenderWindow_setView(_window, cam); 

@@ -32,7 +32,7 @@ int main()
 	while (sfRenderWindow_isOpen(window))
 	{
 		
-		
+		restartClock();
 		//update
 		while (sfRenderWindow_pollEvent(window, &event))
 		{
@@ -48,8 +48,8 @@ int main()
 	
 		sfRenderWindow_clear(window, sfBlack);
 		
-		displayMap(window, animCoffre, cam);
-		displayCam(window, animCoffre);
+		displayMap(window,cam);
+		displayCam(window);
 		displayPlayer(window);
 		
 		sfRenderWindow_display(window);
