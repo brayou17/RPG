@@ -13,7 +13,7 @@ sfIntRect tileRect;
 sfVector2f position = { 0.0f ,0.0f };
 sfVector2i Tposition = { 0 ,0 };
 int ntile = 0;
-float timer_c = 0.0f;
+
 
 FILE* fichier;
 
@@ -159,6 +159,7 @@ void updateMap(sfRenderWindow* _window, sfView* _cam)
 
 		if (sfKeyboard_isKeyPressed(sfKeyO))
 		{
+			float timer_c = 0.0f;
 			Openchest(timer_c);
 			
 		}
