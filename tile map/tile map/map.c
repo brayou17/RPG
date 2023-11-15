@@ -170,21 +170,48 @@ void updateMap(sfRenderWindow* _window, sfView* _cam)
 
 void Openchest()
 {
-	int blocage = 0;
+	for (int i =0; i )
+	
+	
+	/*int blocage = 0;
+	while (blocage != 1)
+	{
+		if (timer_c >= .3)
+		{
+			if (chestrect.left >= 128)
+			{
+				blocage = 1;
+			}
+			else
+			{
+				chestrect.left += 32;
+				sfSprite_setTextureRect(chest, chestrect);
+				timer_c = 0;
+			}
+		}
+	}
+	chestrect.left = 96;*/
+
+	/*int blocage = 0;
 	if (timer_c >= .3)
 	{
 		if (blocage == 1)
 		{
-
+			printf("1");
+			chestrect.left = 32;
+			
 		}
 		else
 		{
-			if (chestrect.left >= 128) blocage = 1;
-			chestrect.left += 32;
-			sfSprite_setTextureRect(chest, chestrect);
-			timer_c = 0;
+			if (chestrect.left >= 128) { blocage = 1; timer_c = 0; }
+			else {
+				chestrect.left += 32;
+				sfSprite_setTextureRect(chest, chestrect);
+				timer_c = 0;
+				printf("3");
+			}
 		}
-	}
+	}*/
 }
 
 
