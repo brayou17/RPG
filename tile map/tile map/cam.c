@@ -4,7 +4,7 @@
 #include "map.h"
 
 
-sfVector2f camrect = {800 ,600 };
+sfVector2f camrect = {800.f ,600.f };
 
 
 void initCam()
@@ -33,15 +33,15 @@ void displayCam(sfRenderWindow* _window)
 void EditorMod_cam()
 {
 	// Passage en mode édition de map
-	camrect.x = 2400;
-	camrect.y = 1800;
+	camrect.x = 2400.f;
+	camrect.y = 1800.f;
 	sfView_setSize(cam, camrect);
 }
 
 void GameMod_cam()
 {
 	// Passage en mode jeu 
-	camrect.x = 800;
-	camrect.y = 600;
+	camrect.x = 800.f;
+	camrect.y = 600.f;
 	sfView_setSize(cam, camrect);
 }

@@ -5,11 +5,11 @@
 
 
 
+
 void initMenu();
 
-void updateMenu();
+void updateMenu(sfRenderWindow* _window);
 
 void DisplayMenu(sfRenderWindow* _window);
 
-void DestroyMenu();
 
