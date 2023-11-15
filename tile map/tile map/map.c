@@ -155,11 +155,11 @@ void updateMap(sfRenderWindow* _window, sfView* _cam)
 	
 	if (iModeDeJeu == 0)
 	{
-		timer_c += GetDeltaTime();
+		//timer_c += GetDeltaTime();
 
 		if (sfKeyboard_isKeyPressed(sfKeyO))
 		{
-			Openchest();
+			Openchest(timer_c);
 			
 		}
 	}
@@ -168,9 +168,47 @@ void updateMap(sfRenderWindow* _window, sfView* _cam)
 }
 
 
-void Openchest()
+void Openchest(float timer_c)
 {
-	for (int i =0; i )
+	timer_c += GetDeltaTime();
+	if (timer_c >= 0.5)
+	{
+
+		if (chestrect.left > 96) chestrect.left = 96;
+		else
+		{
+
+			chestrect.left += 32;
+			sfSprite_setTextureRect(chest, chestrect);
+			timer_c = 0;
+			Openchest(timer_c);
+		}
+	}
+	
+	
+	
+	/*if (timer_c >= .3)
+	{
+		if (chestrect.left < 128) chestrect.left = 96;
+		else
+		{
+			chestrect.left += 32;
+			sfSprite_setTextureRect(chest, chestrect);
+			timer_c = 0;
+		}
+	}*/
+
+
+	/*for (int i = 0; i < 4; i++)
+	{
+		if (timer_c >= .3)
+		{
+				chestrect.left += 32;
+				sfSprite_setTextureRect(chest, chestrect);
+				timer_c = 0;
+
+		}
+	}*/
 	
 	
 	/*int blocage = 0;
@@ -191,6 +229,7 @@ void Openchest()
 		}
 	}
 	chestrect.left = 96;*/
+
 
 	/*int blocage = 0;
 	if (timer_c >= .3)
