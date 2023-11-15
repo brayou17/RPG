@@ -4,7 +4,7 @@
 #define TEXTURE_PATH "../Ressources/Textures/"
 
 
-sfIntRect chestrect[4] = { {0, 0, 32 ,32},{32, 0, 32 ,32},{64, 0, 32 ,32},{96, 0, 32 ,32} };
+sfIntRect chestrect = { 0,0,32,32 };
 sfVector2f chestpos = { 0.0f ,0.0f };
 
 sfSprite* tileSprite;
@@ -12,7 +12,8 @@ sfTexture* tileTexture;
 sfIntRect tileRect;
 sfVector2f position = { 0.0f ,0.0f };
 sfVector2i Tposition = { 0 ,0 };
-int ntile;
+int ntile = 0;
+float timer_c = 0.0f;
 
 FILE* fichier;
 
@@ -31,11 +32,14 @@ void initMap()
 	fclose(fichier);
 
 
- 	// Initialisation des textures et des sprites
+ 	// Initialisation coffre 
 	chesttexture = sfTexture_createFromFile(TEXTURE_PATH"coffre32.png", NULL);
 	chest = sfSprite_create();
 	sfSprite_setTexture(chest, chesttexture, sfTrue);
+	sfSprite_setTextureRect(chest, chestrect);
 
+
+	// Initialisation tileset
 	tileTexture = sfTexture_createFromFile(TEXTURE_PATH"tileset.png", NULL);
 	tileSprite = sfSprite_create();
 	sfSprite_setTexture(tileSprite, tileTexture, sfTrue);
@@ -55,9 +59,10 @@ float timer = 0.0f;
 int TailleBrush = 0;
 
 
-void updateMap(sfRenderWindow* _window, int _t, sfView* _cam)
+void updateMap(sfRenderWindow* _window, sfView* _cam)
 {
 	// Initatisation des variables
+	int animCoffre = 0;
 	
 	timer2 += GetDeltaTime();
 
@@ -136,7 +141,6 @@ void updateMap(sfRenderWindow* _window, int _t, sfView* _cam)
 		{
 			timer = 0.0f;
 			TailleBrush = (1 + TailleBrush) % 2;
-			printf("%d", TailleBrush);
 		}
 
 		// Si la touche M est pressée alors on sauvegarde la map
@@ -148,17 +152,44 @@ void updateMap(sfRenderWindow* _window, int _t, sfView* _cam)
 			fclose(fichier);
 		}
 	}
+	
+	if (iModeDeJeu == 0)
+	{
+		timer_c += GetDeltaTime();
+
+		if (sfKeyboard_isKeyPressed(sfKeyO))
+		{
+			Openchest();
+			
+		}
+	}
+
+	
+}
 
 
+void Openchest()
+{
+	int blocage = 0;
+	if (timer_c >= .3)
+	{
+		if (blocage == 1)
+		{
 
+		}
+		else
+		{
+			if (chestrect.left >= 128) blocage = 1;
+			chestrect.left += 32;
+			sfSprite_setTextureRect(chest, chestrect);
+			timer_c = 0;
+		}
+	}
 }
 
 
 
-
-
-
-void displayMap(sfRenderWindow* _window, int _t, sfView* _cam)
+void displayMap(sfRenderWindow* _window, sfView* _cam)
 {
 	
 
@@ -224,7 +255,7 @@ void displayMap(sfRenderWindow* _window, int _t, sfView* _cam)
 				chestpos.x = x * 32;
 				chestpos.y = y * 32;
 				sfSprite_setPosition(chest, chestpos);
-				sfSprite_setTextureRect(chest, chestrect[_t]);
+				sfSprite_setTextureRect(chest, chestrect);
 				sfRenderWindow_drawSprite(_window, chest, NULL);
 				break;
 			case 6:
@@ -486,7 +517,7 @@ sfBool collision(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse)
 			fpos2.x = (_sprite.width + _sprite.left + _vitesse.x * GetDeltaTime()) / 32;
 			
 			// Si la case est 5 4 3 9 alors, on renvoie vrai || A REVOIR
-			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] == 9 || map[fpos.y][fpos.x] == 9))
+			if ((map[fpos.y][fpos.x] < 6 && map[fpos.y][fpos.x] >2) || (map[fpos2.y][fpos2.x] < 6 && map[fpos2.y][fpos2.x] >2) || (map[fpos2.y][fpos2.x] == 9 || map[fpos.y][fpos.x] == 9))
 			{
 				return sfTrue;
 			}
