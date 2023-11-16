@@ -7,18 +7,6 @@
 #include"cam.h"
 
 
-// Enum pour les statues du jeu
-typedef enum state
-{
-	MENU = 0,
-	JOUER,
-	EDITEUR,
-	QUITTER
-} state;
-
-state actualState;
-
-
 void initTools();
 void restartClock();
 float GetDeltaTime();
