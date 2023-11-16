@@ -45,6 +45,13 @@ void updatePlayer(sfRenderWindow* _window)
 		animTime += GetDeltaTime();
 		isMoving = sfTrue;
 	}
+
+	if (sfKeyboard_isKeyPressed(sfKeyEscape))
+	{
+	
+		actualState = MENU;
+	}
+
 	else if (sfKeyboard_isKeyPressed(sfKeyS) && Pposition.y > 0)
 	{	// Mouvement vers le bas
 
