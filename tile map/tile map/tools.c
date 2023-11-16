@@ -4,6 +4,7 @@ sfTime sftime;
 sfClock* sfclock;
 
 
+
 void initTools()
 {
 	// Creation de l'horloge interne pour le temps

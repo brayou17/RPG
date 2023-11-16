@@ -5,15 +5,12 @@
 
 sfSprite* chest;
 sfTexture* chesttexture;
-sfIntRect chestrect;
+sfIntRect chestrect[4];
 sfVector2f chestpos;
-int iModeDeJeu;
+
 
 void initMap();
-void updateMap(sfRenderWindow* _window, sfView* _cam);
 
 sfBool collision(sfFloatRect _sprite, Direction _direction, sfVector2f _vitesse);
 
-void displayMap(sfRenderWindow* _window, sfView* _cam);
-
-void Openchest();
+void displayMap(sfRenderWindow* _window, int _t, sfView* _cam);
